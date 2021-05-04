@@ -55,7 +55,7 @@ jobs:
           - "arduino-blink"
           - "arduino-internal-libs"
 
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
@@ -67,11 +67,6 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.9
-
-      - name: Install more
-        if: matrix.os != 'windows-latest'
-        run: |
-          sudo apt-get install libc6-i386
 
       - name: Install
         run: |
