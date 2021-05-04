@@ -1,0 +1,14 @@
+kind: pipeline
+name: OSQ
+
+steps:
+- name: PIO
+  image: python:3
+  commands:
+  - apt update
+  - apt install -y git
+  - git submodule update --init --recursive
+  - pip install -U https://github.com/platformio/platformio/archive/develop.zip
+  - pio platform install https://github.com/OS-Q/P27/archive/pio.zip
+  - pio run -d examples/arduino-blink
+  - pio run -d examples/arduino-internal-libs
