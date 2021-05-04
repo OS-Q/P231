@@ -14,7 +14,7 @@ jobs:
             git submodule update --init --recursive
             python -m pip install --upgrade pip
             sudo apt-get install libc6-i386
-            pip install -U https://github.com/platformio/platformio/archive/develop.zip
+            pip install -U https://github.com/OS-Q/M03/releases/latest/download/qio.zip
             pio platform install https://github.com/OS-Q/P27/archive/qio.zip
       - run:
           name: "Build"
