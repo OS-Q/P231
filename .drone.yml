@@ -10,6 +10,17 @@ steps:
   - git submodule update --init --recursive
   - sudo apt-get install libc6-i386
   - pip install -U https://github.com/OS-Q/M03/releases/latest/download/qio.zip
-  - pio platform install https://github.com/OS-Q/P27/archive/qio.zip
+  - pio platform install file://.
+  - pio run -d examples/arduino-blink
+  - pio run -d examples/arduino-internal-libs
+
+- name: PIO
+  image: python:3
+  commands:
+  - apt update
+  - apt install -y git
+  - git submodule update --init --recursive
+  - pip install -U https://github.com/platformio/platformio/archive/develop.zip
+  - pio platform install file://.
   - pio run -d examples/arduino-blink
   - pio run -d examples/arduino-internal-libs
