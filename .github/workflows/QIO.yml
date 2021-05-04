@@ -1,16 +1,15 @@
-name: PIO
+name: QIO
 
 on:
   push:
     branches:
-      - pio
+      - qio
     paths:
       - 'boards/**'
-      - 'builder/**'
-      - 'misc/**'
+      - 'extend/**'
       - 'examples/**'
-      - 'platform.json'
-      - 'platform.py'
+      - 'link.json'
+      - 'link.py'
 
 jobs:
   CodeCheck:
@@ -48,7 +47,7 @@ jobs:
         name: code_check_report
         path: codecheck.txt
 
-  PIO:
+  QIO:
     strategy:
       fail-fast: false
       matrix:
@@ -68,6 +67,11 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.9
+
+      - name: Install more
+        if: matrix.os != 'windows-latest'
+        run: |
+          sudo apt-get install libc6-i386
 
       - name: Install
         run: |
