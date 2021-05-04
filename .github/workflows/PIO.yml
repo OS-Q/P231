@@ -69,6 +69,11 @@ jobs:
         with:
           python-version: 3.9
 
+      - name: Install more
+        if: matrix.os != 'windows-latest'
+        run: |
+          sudo apt-get install libc6-i386
+
       - name: Install
         run: |
           python -m pip install --upgrade pip
